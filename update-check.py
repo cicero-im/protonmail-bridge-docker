@@ -4,7 +4,7 @@ def git(command):
   return os.system(f"git {command}")
 
 
-release = requests.get("https://api.github.com/repos/protonmail/proton-bridge/releases/latest").json()
+release = requests.get("https://api.github.com/repos/protonmail/proton-bridge/releases/latest", timeout=60).json()
 version = release['tag_name']
 deb = [asset for asset in release ['assets'] if asset['name'].endswith('.deb')][0]['browser_download_url']
 
